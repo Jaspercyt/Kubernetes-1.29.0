@@ -11,8 +11,8 @@ Vagrant.configure("2") do |config|
       v.cpus = 6
     end
     master.vm.provision "shell", privileged: false, inline: <<-SHELL
-      wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/1-setup-node.sh
-      wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/2-master-node.sh
+      wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/localhost-env/vagrant-shell/1-setup-node.sh
+      wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/localhost-env/vagrant-shell/2-master-node.sh
       bash 1-setup-node.sh
       bash 2-master-node.sh
       rm -rf *
@@ -28,7 +28,7 @@ Vagrant.configure("2") do |config|
       v.cpus = 4
     end
     worker01.vm.provision "shell", privileged: false, inline: <<-SHELL
-      wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/1-setup-node.sh
+      wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/localhost-env/vagrant-shell/1-setup-node.sh
       bash 1-setup-node.sh
       # 執行 kubeadm join
       sh /vagrant/kubeadm/kubeadm-join
@@ -49,7 +49,7 @@ Vagrant.configure("2") do |config|
       v.cpus = 4
     end
     worker02.vm.provision "shell", privileged: false, inline: <<-SHELL
-      wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/1-setup-node.sh
+      wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/localhost-env/vagrant-shell/1-setup-node.sh
       bash 1-setup-node.sh
       # 執行 kubeadm join
       sh /vagrant/kubeadm/kubeadm-join
