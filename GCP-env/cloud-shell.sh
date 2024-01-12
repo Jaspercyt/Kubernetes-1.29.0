@@ -54,7 +54,8 @@ gcloud compute instances create master \
   --subnet=gcp-kubernetes-subnet \
   --network-tier=STANDARD \
   --maintenance-policy=TERMINATE \
-  --preemptible \
+
+...skipping 1 line
   --scopes=default \
   --tags=http-server,https-server \
   --image-family=ubuntu-2204-lts \
