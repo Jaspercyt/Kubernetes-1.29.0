@@ -1,0 +1,64 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "bento/ubuntu-22.04"
+  config.vm.box_version = "202212.11.0"
+
+  # Master node configuration
+  config.vm.define "master" do |master|
+    master.vm.hostname = "master"
+    master.vm.network "private_network", ip: "192.168.56.10"
+    master.vm.provider "virtualbox" do |v|
+      v.memory = 6144
+      v.cpus = 6
+    end
+    master.vm.provision "shell", privileged: false, inline: <<-SHELL
+      wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/localhost-env/vagrant-shell/1-setup-node.sh
+      wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/localhost-env/vagrant-shell/2-master-node.sh
+      bash 1-setup-node.sh
+      bash 2-master-node.sh
+      rm -rf *
+    SHELL
+  end
+
+  # Worker-01 node configuration
+  config.vm.define "worker-01" do |worker01|
+    worker01.vm.hostname = "worker01"
+    worker01.vm.network "private_network", ip: "192.168.56.11"
+    worker01.vm.provider "virtualbox" do |v|
+      v.memory = 4096
+      v.cpus = 4
+    end
+    worker01.vm.provision "shell", privileged: false, inline: <<-SHELL
+      wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/localhost-env/vagrant-shell/1-setup-node.sh
+      bash 1-setup-node.sh
+      # 執行 kubeadm join
+      sh /vagrant/kubeadm/kubeadm-join
+      # 修改 Internal IP
+      sudo sed -i 'a KUBELET_EXTRA_ARGS="--node-ip=192.168.56.11"' /var/lib/kubelet/kubeadm-flags.env
+      sudo systemctl daemon-reload
+      sudo systemctl restart kubelet
+      rm -rf *
+    SHELL
+  end
+
+  # Worker-02 node configuration
+  config.vm.define "worker-02" do |worker02|
+    worker02.vm.hostname = "worker02"
+    worker02.vm.network "private_network", ip: "192.168.56.12"
+    worker02.vm.provider "virtualbox" do |v|
+      v.memory = 4096
+      v.cpus = 4
+    end
+    worker02.vm.provision "shell", privileged: false, inline: <<-SHELL
+      wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/localhost-env/vagrant-shell/1-setup-node.sh
+      bash 1-setup-node.sh
+      # 執行 kubeadm join
+      sh /vagrant/kubeadm/kubeadm-join
+      # 修改 Internal IP
+      sudo sed -i 'a KUBELET_EXTRA_ARGS="--node-ip=192.168.56.12"' /var/lib/kubelet/kubeadm-flags.env
+      sudo systemctl daemon-reload
+      sudo systemctl restart kubelet
+      rm -rf *
+    SHELL
+  end
+
+end
