@@ -4,11 +4,11 @@
 echo "----------------------------------------------------------------------------------------"
 echo "[TASK 1] Installing kubeadm"
 echo "----------------------------------------------------------------------------------------"
-# 安裝 Kubernetes 可以透過 kubeadm、kop 或 kubespray，這邊使用 kubeadm 來安裝。
-# 更多資訊: https://kubernetes.io/docs/setup/production-environment/tools/
+# 安裝 Kubernetes 可以透過 kubeadm、kop 或 kubespray，這次使用 kubeadm 來安裝。
+# 參考資料: https://kubernetes.io/docs/setup/production-environment/tools/
 
 # 進行安裝 kubeadm 的前置作業
-# 更多資訊: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin
+# 參考資料: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#before-you-begin
 sudo swapoff -a  # 關閉 swap 空間，因為 Kubernetes 不支援 swap
 sudo sed -i '/swap/d' /etc/fstab  # 從 fstab 中移除 swap 相關的內容，避免在重啟後 swap 被打開
 sudo timedatectl set-timezone Asia/Taipei  # 設定時區為台北時間
@@ -18,8 +18,8 @@ echo "--------------------------------------------------------------------------
 echo "[TASK 2] Installing a container runtime"
 echo "----------------------------------------------------------------------------------------"
 # Kubernetes 需要一個 container runtime 環境，這裡我們將安裝 containerd。
-# 更多資訊: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-runtime
-# 更多資訊: https://kubernetes.io/docs/setup/production-environment/container-runtimes/
+# 參考資料: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-runtime
+# 參考資料: https://kubernetes.io/docs/setup/production-environment/container-runtimes/
 
 # 設定必要的系統參數，以便 Kubernetes 正常運行
 # 增加 overlay 和 br_netfilter 模組
@@ -74,10 +74,10 @@ sudo systemctl restart containerd
 echo "----------------------------------------------------------------------------------------"
 echo "[TASK 3] Installing kubeadm, kubelet and kubectl"
 echo "----------------------------------------------------------------------------------------"
-# kubeadm: 用於啟動叢集的命令。
-# kubelet: 在叢集中所有機器上運行的組件，負責啟動 pod 和容器。
-# kubectl: 用於與叢集通信的命令行工具。
-# 更多資訊: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl
+# kubeadm: 用於啟動 Cluster 的命令。
+# kubelet: 在 Cluster 中所有機器上運行的組件，負責啟動 pod 和容器。
+# kubectl: 用於與 Cluster 通信的命令行工具。
+# 參考資料: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/#installing-kubeadm-kubelet-and-kubectl
 
 # 更新 apt 套件索引並安裝使用 Kubernetes apt 倉庫所需的套件
 sudo apt-get update
