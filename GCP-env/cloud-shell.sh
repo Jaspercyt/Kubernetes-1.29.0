@@ -65,8 +65,8 @@ gcloud compute instances create master \
   --private-network-ip=192.168.56.10 \
   --metadata=startup-script='#! /bin/bash
 # 下載並執行安裝腳本
-wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/GCP-env/vagrant-shell/1-setup-node.sh
-wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/GCP-env/vagrant-shell/2-master-node.sh
+wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/GCP-env/GCE-shell/1-setup-node.sh
+wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/GCP-env/GCE-shell/2-master-node.sh
 bash 1-setup-node.sh
 bash 2-master-node.sh
 rm -rf *'
