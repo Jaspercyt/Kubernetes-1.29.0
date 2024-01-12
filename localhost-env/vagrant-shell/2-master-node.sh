@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# 建立 Kubernetes 集群
-# 參考文件: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm
+# 建立 Kubernetes cluster
+# 參考資料: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm
 echo "----------------------------------------------------------------------------------------"
 echo "[TASK 1] Creating a cluster with kubeadm"
 echo "----------------------------------------------------------------------------------------"
 # 產生 kubeadm 配置檔案
-# 配置包括叢集網絡設定、apiserver、controllerManager 和 scheduler 的額外參數
+# 配置包括 Cluster 網絡設定、apiserver、controllerManager 和 scheduler 的額外參數
 cat <<EOF > kubeadm-config.yaml
 apiVersion: kubeadm.k8s.io/v1beta3
 kind: ClusterConfiguration
@@ -32,7 +32,7 @@ featureGates:
 kind: KubeletConfiguration
 EOF
 # 初始化 control-plane 節點
-# 參考文件: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/#initializing-your-control-plane-node
+# 參考資料: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/#initializing-your-control-plane-node
 sudo kubeadm init --config kubeadm-config.yaml
 # 設定非 root 使用者可以使用 kubectl
 mkdir -p $HOME/.kube
@@ -40,7 +40,7 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 # 安裝 Calico 網路 CNI
-# 參考文件: https://docs.tigera.io/calico/latest/getting-started/kubernetes/self-managed-onprem/onpremises
+# 參考資料: https://docs.tigera.io/calico/latest/getting-started/kubernetes/self-managed-onprem/onpremises
 echo "----------------------------------------------------------------------------------------"
 echo "[TASK 2] Install Calico networking and network policy for on-premises deployments"
 echo "----------------------------------------------------------------------------------------"
@@ -50,7 +50,7 @@ kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.0
 kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/custom-resources.yaml
 
 # 啟用 shell 自動補全
-# 參考文件: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#enable-shell-autocompletion
+# 參考資料: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#enable-shell-autocompletion
 echo "----------------------------------------------------------------------------------------"
 echo "[TASK 3] Enable shell autocompletion"
 echo "----------------------------------------------------------------------------------------"
@@ -60,7 +60,7 @@ echo 'source <(kubectl completion bash)' >>~/.bashrc
 source ~/.bashrc
 
 # 產生不會過期的 kubeadm 連接 token
-# 參考文件: https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/
+# 參考資料: https://kubernetes.io/docs/reference/setup-tools/kubeadm/kubeadm-token/
 echo "----------------------------------------------------------------------------------------"
 echo "[TASK 4] kubeadm token create"
 echo "----------------------------------------------------------------------------------------"
@@ -73,11 +73,11 @@ mkdir -p "$KUBEADM_DIR"
 kubeadm token create --ttl 0 > "$TOKEN_FILE"
 # 產生 CA 證書的 SHA256 雜湊值
 openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt | openssl rsa -pubin -outform der 2>/dev/null | openssl dgst -sha256 -hex | sed 's/^.* //' > "$SHA256_FILE"
-# 儲存加入叢集的命令到檔案
+# 儲存加入 Cluster 的指令到檔案
 echo "sudo kubeadm join 192.168.56.10:6443 --token $(cat "$TOKEN_FILE") --discovery-token-ca-cert-hash sha256:$(cat "$SHA256_FILE")" > "$JOIN_CMD_FILE"
 
 # 將 Cluster 層級的配置傳遞給每個 kubelet
-# 參考文件: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/kubelet-integration/#workflow-when-using-kubeadm-init
+# 參考資料: https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/kubelet-integration/#workflow-when-using-kubeadm-init
 echo "----------------------------------------------------------------------------------------"
 echo "[TASK 5] propagate cluster-level configuration to each kubelet"
 echo "----------------------------------------------------------------------------------------"
