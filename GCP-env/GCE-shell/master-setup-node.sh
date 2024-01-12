@@ -158,12 +158,12 @@ source ~/.bashrc
 echo "----------------------------------------------------------------------------------------"
 echo "[TASK 7] kubeadm token create"
 echo "----------------------------------------------------------------------------------------"
-mkdir -p /home/$(whoami)/kubeadm-token
+sudo mkdir -p /home/$(whoami)/kubeadm-token
 KUBEADM_DIR="/home/$(whoami)/kubeadm-token"
 TOKEN_FILE="${KUBEADM_DIR}/token"
 SHA256_FILE="${KUBEADM_DIR}/sha256"
 JOIN_CMD_FILE="${KUBEADM_DIR}/kubeadm-join"
-mkdir -p "$KUBEADM_DIR"
+sudo mkdir -p "$KUBEADM_DIR"
 # 產生永久有效的 token
 kubeadm token create --ttl 0 > "$TOKEN_FILE"
 # 產生 CA 證書的 SHA256 雜湊值
