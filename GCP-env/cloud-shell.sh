@@ -20,10 +20,10 @@ gcloud compute networks subnets create $SUBNET --network=$NETWORK --region=$REGI
 FIREWALL_RULES=(
   "gcp-kubernetes-vpc-allow-icmp icmp INGRESS 65534 0.0.0.0/0"
   "gcp-kubernetes-vpc-allow-ssh tcp:22 INGRESS 65534 0.0.0.0/0"
-  "allow-http tcp:80 INGRESS"
-  "allow-https tcp:443 INGRESS"
-  "allow-lb-health-check tcp:8080 INGRESS 35.191.0.0/16,130.211.0.0/22"
-  "gcp-kubernetes-vpc-allow-internal icmp,tcp,udp INGRESS 1000 192.168.56.0/24 192.168.56.0/24"
+  "allow-http tcp:80 INGRESS 1000"
+  "allow-https tcp:443 INGRESS 1001"
+  "allow-lb-health-check tcp:8080 INGRESS 1002"
+  "gcp-kubernetes-vpc-allow-internal icmp,tcp,udp INGRESS 1003"
 )
 
 # 循環遍歷防火牆規則陣列，為每一條規則建立防火牆
