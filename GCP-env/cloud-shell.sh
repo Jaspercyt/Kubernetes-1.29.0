@@ -63,8 +63,10 @@ gcloud compute instances create master \
   --boot-disk-device-name=master \
   --private-network-ip=192.168.56.10 \
   --metadata=startup-script='#! /bin/bash
-    wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/GCP-env/GCE-shell/master-setup-node.sh
-    bash master-setup-node.sh'
+    wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/GCP-env/GCE-shell/1-setup-node.sh
+    bash 1-setup-node.sh.sh
+    https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/GCP-env/GCE-shell/2-master-node.sh
+    bash 2-master-node.sh'
 
 # 從 master 節點複製 kubeadm-token 到本地機器
 gcloud compute scp master:/home/$(whoami)/kubeadm-token/kubeadm-join /home/$(whoami) --zone us-west4-a
