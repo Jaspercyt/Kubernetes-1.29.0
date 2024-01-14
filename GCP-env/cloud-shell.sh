@@ -33,11 +33,13 @@ for rule in "${FIREWALL_RULES[@]}"; do
 done
 
 # 定義虛擬機器的名稱和私有網絡 IP
-INSTANCE_NAMES=("master 192.168.56.10" "worker01 192.168.56.11" "worker02 192.168.56.12")
+INSTANCE_NAMES=("master" "worker01" "worker02")
+INSTANCE_IPS=("192.168.56.10" "192.168.56.11" "192.168.56.12")
 
 # 為每一台虛擬機器建立實例
-for instance in "${INSTANCE_NAMES[@]}"; do
-  read -r name ip <<<"$instance"
+for ((i=0; i<${#INSTANCE_NAMES[@]}; i++)); do
+  name="${INSTANCE_NAMES[$i]}"
+  ip="${INSTANCE_IPS[$i]}"
   gcloud compute instances create $name \
     --zone=${REGION}-a \
     --machine-type=$MACHINE_TYPE \
