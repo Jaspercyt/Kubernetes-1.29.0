@@ -16,16 +16,12 @@ setup_node() {
 
   # 通過 SSH 連接到節點，並下載並執行節點設置腳本
   gcloud compute ssh $node --zone=$ZONE --command="wget -O /home/\$(whoami)/1-setup-node.sh $SETUP_SCRIPT_URL && bash /home/\$(whoami)/1-setup-node.sh"
-
   # 將 kubeadm-join 腳本複製到節點
   gcloud compute scp kubeadm-join $node:/home/\$(whoami)/ --zone=$ZONE
-
   # 在節點上設置 kubeadm-join 腳本的執行權限，並執行它
   gcloud compute ssh $node --zone=$ZONE --command="chmod +x /home/\$(whoami)/kubeadm-join && sudo sh /home/\$(whoami)/kubeadm-join"
-
   # 更新節點的 kubelet 配置，並重啟服務
   gcloud compute ssh $node --zone=$ZONE --command="sudo sed -i 'a KUBELET_EXTRA_ARGS=\"--node-ip=$ip\"' /var/lib/kubelet/kubeadm-flags.env && sudo systemctl daemon-reload && sudo systemctl restart kubelet"
-
   # 清理節點上的臨時檔案
   gcloud compute ssh $node --zone=$ZONE --command="rm -rf /home/\$(whoami)/1-setup-node.sh /home/\$(whoami)/cni-plugins-linux-amd64-v1.4.0.tgz /home/$(whoami)/containerd-1.7.11-linux-amd64.tar.gz /home/$(whoami)/kubeadm-join /home/$(whoami)/runc.amd64"
 }
