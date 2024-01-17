@@ -121,6 +121,7 @@ Google Cloud Platform 服務使用包括：VPC、Subnet，以及三台虛擬機�
 ```bash
 wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/GCP-env/GCE-Kubernetes.sh && bash GCE-Kubernetes.sh
 ```
+![image](https://github.com/Jaspercyt/Kubernetes-1.29.0/assets/88648972/bbe4cdd6-713e-45ad-a872-83075153c23a)
 
 ##### Step 03：驗證是否成功建置 Kubernetes Cluster
 在 Cloud Shell 中，執行以下指令
