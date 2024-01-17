@@ -11,3 +11,6 @@ gcloud compute networks subnets delete gcp-kubernetes-subnet --region us-west4 -
 
 # 刪除 VPC
 gcloud compute networks delete gcp-kubernetes-vpc --quiet
+
+# 從 Cloud Shell 中刪除腳本
+rm delete-k8s-gcp-resources.sh
