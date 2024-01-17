@@ -131,7 +131,7 @@ wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/GCP-env/
   gcloud compute ssh master --zone=us-west4-a --command="kubectl get nodes -o wide"
   ```
 
-* 由於節點 `STATUS` 為 Ready，並且沒有異常的錯誤提示，因此 Kubernetes 已成功安裝並且叢集正在正常運行。
+由於節點 `STATUS` 為 Ready，並且沒有異常的錯誤提示，因此 Kubernetes 已成功安裝並且叢集正在正常運行。
 `STATUS`：Ready 代表節點已經準備好並且可以接受運行容器。
 `ROLES`：master 節點被標記為 control-plane，負責叢集管理和調度工作。worker01 和 worker02 節點沒有標記角色為工作節點，用於運行應用程式的容器。
 `VERSION`：所有節點上的版本都是 v1.29.0。
