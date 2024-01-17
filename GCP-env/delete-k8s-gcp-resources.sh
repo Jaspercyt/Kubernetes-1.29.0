@@ -8,7 +8,7 @@ INSTANCE_NAMES=("master" "worker01" "worker02")
 
 # 刪除 VM 實例
 for instance in "${INSTANCE_NAMES[@]}"; do
-  gcloud compute instances delete $instance --quiet
+  gcloud compute instances delete $instance --quiet --zone=us-west4-a
 done
 
 # 刪除防火牆規則
