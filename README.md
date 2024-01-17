@@ -149,12 +149,14 @@ wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/GCP-env/
 ```bash
 gcloud compute instances stop master worker01 worker02 --zone=us-west4-a
 ```
+![image](https://github.com/Jaspercyt/Kubernetes-1.29.0/assets/88648972/e2ea55b0-2493-4250-929d-1a8f88753747)
 
 ##### Step 05：重啟 VM Instance
 在 Cloud Shell 中，執行以下指令
 ```bash
 gcloud compute instances start master worker01 worker02 --zone=us-west4-a
 ```
+![image](https://github.com/Jaspercyt/Kubernetes-1.29.0/assets/88648972/1a3f8cb1-adc5-4ff6-8791-d659c319409d)
 
 ##### Step 06：清理環境，刪除 GCP 資源
 在 Cloud Shell 中，執行以下指令
