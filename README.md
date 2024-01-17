@@ -112,7 +112,8 @@ Google Cloud Platform 服務使用包括：VPC、Subnet，以及三台虛擬機�
 ##### Step 01：開啟 Cloud Shell
 * 登入 [GCP console](https://console.cloud.google.com/)。
 * 在右上角工具列找到 Cloud Shell 的 icon ![image](https://github.com/Jaspercyt/Kubernetes-1.29.0/assets/88648972/39d3447e-a2d1-468d-8abf-77557d550682)，點擊後會在底部開啟一個新的 Cloud Shell session。
-* 在底部 Cloud Shell session 點擊 ![image](https://github.com/Jaspercyt/Kubernetes-1.29.0/assets/88648972/fccf6836-2e3a-4a70-a4a9-746b1c0255bb)可以以新分頁的方式打開 Cloud Shell。
+* 在底部 Cloud Shell session 點擊 ![image](https://github.com/Jaspercyt/Kubernetes-1.29.0/assets/88648972/fccf6836-2e3a-4a70-a4a9-746b1c0255bb) 可以以新分頁的方式打開 Cloud Shell。
+
 ![image](https://github.com/Jaspercyt/Kubernetes-1.29.0/assets/88648972/708cfaa2-e07c-4e5f-8cd7-f8d104b0a4ff)
 
 
