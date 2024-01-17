@@ -124,15 +124,11 @@ wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/GCP-env/
 
 ##### Step 03：驗證是否成功建置 Kubernetes Cluster
 在 Cloud Shell 中，執行以下指令
+* 透過 gcloud compute ssh 請求 master 執行 `kubectl get nodes -o wide` 指令，以檢視 Kubernetes 叢集各節點的狀態。
 ```bash
 gcloud compute ssh master --zone=us-west4-a --command="kubectl get nodes -o wide"
-NAME       STATUS   ROLES           AGE     VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION   CONTAINER-RUNTIME
-master     Ready    control-plane   11m     v1.29.0   192.168.56.10   <none>        Ubuntu 22.04.3 LTS   6.2.0-1019-gcp   containerd://1.7.11
-worker01   Ready    <none>          9m43s   v1.29.0   192.168.56.11   <none>        Ubuntu 22.04.3 LTS   6.2.0-1019-gcp   containerd://1.7.11
-worker02   Ready    <none>          7m57s   v1.29.0   192.168.56.12   <none>        Ubuntu 22.04.3 LTS   6.2.0-1019-gcp   containerd://1.7.11
 ```
 
-* 透過 gcloud compute ssh 請求 master 執行 `kubectl get nodes -o wide` 指令，以檢視 Kubernetes 叢集各節點的狀態。
 * 由於節點 `STATUS` 為 Ready，並且沒有異常的錯誤提示，因此 Kubernetes 已成功安裝並且叢集正在正常運行。
 `STATUS`：Ready 代表節點已經準備好並且可以接受運行容器。
 `ROLES`：master 節點被標記為 control-plane，負責叢集管理和調度工作。worker01 和 worker02 節點沒有標記角色為工作節點，用於運行應用程式的容器。
@@ -140,6 +136,12 @@ worker02   Ready    <none>          7m57s   v1.29.0   192.168.56.12   <none>    
 `INTERNAL-IP`：每個節點都有分配到內部 IP 地址，使節點間可以互相溝通。
 `OS-IMAGE`：節點運行的是 Ubuntu 22.04.3 LTS
 `CONTAINER-RUNTIME`：containerd://1.7.11。
+```bash
+NAME       STATUS   ROLES           AGE     VERSION   INTERNAL-IP     EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION   CONTAINER-RUNTIME
+master     Ready    control-plane   11m     v1.29.0   192.168.56.10   <none>        Ubuntu 22.04.3 LTS   6.2.0-1019-gcp   containerd://1.7.11
+worker01   Ready    <none>          9m43s   v1.29.0   192.168.56.11   <none>        Ubuntu 22.04.3 LTS   6.2.0-1019-gcp   containerd://1.7.11
+worker02   Ready    <none>          7m57s   v1.29.0   192.168.56.12   <none>        Ubuntu 22.04.3 LTS   6.2.0-1019-gcp   containerd://1.7.11
+```
 
 ##### Step 04：停止 VM Instance
 在 Cloud Shell 中，執行以下指令
