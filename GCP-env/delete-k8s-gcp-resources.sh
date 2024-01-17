@@ -18,22 +18,15 @@ gcloud compute networks subnets delete $SUBNET --region=$REGION --quiet
 gcloud compute networks delete $NETWORK --quiet
 
 # 刪除防火牆規則
-FIREWALL_RULES=(
-  "gcp-kubernetes-vpc-allow-icmp"
-  "gcp-kubernetes-vpc-allow-ssh"
-  "allow-http"
-  "allow-https"
-  "allow-lb-health-check"
-  "gcp-kubernetes-vpc-allow-internal"
-)
+gcloud compute firewall-rules delete gcp-kubernetes-vpc-allow-icmp
+gcloud compute firewall-rules delete gcp-kubernetes-vpc-allow-ssh
+gcloud compute firewall-rules delete allow-http
+gcloud compute firewall-rules delete allow-https
+gcloud compute firewall-rules delete allow-lb-health-check
+gcloud compute firewall-rules delete gcp-kubernetes-vpc-allow-internal
 
-for rule in "${FIREWALL_RULES[@]}"; do
-  gcloud compute firewall-rules delete $rule --quiet
-done
+# 刪除子網
+gcloud compute networks subnets delete gcp-kubernetes-subnet --region=us-west4
 
-# 刪除其他資源
-KUBEADM_DIR="/home/$(whoami)/kubeadm-token"
-rm -rf $KUBEADM_DIR
-
-# 清理完畢
-echo "所有GCP資源已成功刪除。"
+# 刪除網路
+gcloud compute networks delete gcp-kubernetes-vpc
