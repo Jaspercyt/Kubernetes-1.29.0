@@ -174,7 +174,7 @@ wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/GCP-env/
 ##### Step 02：開啟下載後的資料夾 `Kubernetes-1.29.0/localhost-env`
 
 * 複製路徑
-![image](https://github.com/Jaspercyt/Kubernetes-1.29.0/assets/88648972/7de1a5a5-60f8-42a2-915a-3546a4c84656)
+  ![image](https://github.com/Jaspercyt/Kubernetes-1.29.0/assets/88648972/7de1a5a5-60f8-42a2-915a-3546a4c84656)
 
 * 開啟 Powershell 或 Terminal，執行以下指令
   ```bash
