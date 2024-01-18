@@ -53,7 +53,7 @@ Kubernetes 測試環境安裝
 | 項次 |    腳本名稱    | 摘述                                                                 |
 |:----:|:--------------:|:-------------------------------------------------------------------- |
 |  1   | GCE-Kubernetes | 主腳本，用於執行其他子腳本           |
-|  2   |  cloud-shell   | 設定 GCP 網路環境，包括：VPC、subnet、Firewall rule 及 VM                      |
+|  2   |  cloud-shell   | 設定 GCP 網路環境，包括：VPC、Subnet、Firewall rule 及 VM                      |
 |  3   |  master-node   | 設定 Kubernetes 主節點，包括 kubeadm 初始化及其他相關配置            |
 |  4   |  worker-node   | 設定 Kubernetes 工作節點，並加入到叢集中                             |
 |  5   |  1-setup-node  | 安裝必要的 Kubernetes 元件及 Container Runtimes，為加入叢集的前置作業 |
