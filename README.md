@@ -65,7 +65,7 @@ Kubernetes 測試環境安裝
 GCE-Kubernetes.sh
 │
 ├── cloud-shell.sh
-│   └── [設定 GCP 的 VPC、subnet 及 VM]
+│   └── [設定 GCP 的 VPC、Subnet & VM]
 │
 ├── master-node.sh
 │   ├───> 1-setup-node.sh
