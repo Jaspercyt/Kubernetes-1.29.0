@@ -5,7 +5,7 @@ Kubernetes 測試環境安裝
 ## 摘要
 這個 Repository 的目的在於協助大家學習及實際測試 Kubernetes。
 
-由於 Kubernetes 的安裝具有一定的門檻，同時也需要一定的基礎設施環境操作能力，所以提供 2 種 Kubernetes 測試環境的建置腳本：
+由於 Kubernetes 的安裝具有一定的門檻，同時也需要一定的基礎環境操作能力，所以提供 2 種 Kubernetes 測試環境的建置腳本：
 * [Google Cloud](https://github.com/Jaspercyt/Kubernetes-1.29.0/tree/main#%E7%92%B0%E5%A2%83-1google-cloud)：
 透過 Google Cloud 提供的 Cloud Shell，使用 gcloud 指令進行部署雲端環境並建置 Kubernetes cluster。
 * [Oracle VM VirtualBox](https://github.com/Jaspercyt/Kubernetes-1.29.0/tree/main?tab=readme-ov-file#%E7%92%B0%E5%A2%83-2oracle-vm-virtualbox)：
@@ -43,7 +43,7 @@ Kubernetes 測試環境安裝
 透過手動在 Google Compute Engine 上部署 Kubernetes，可以深入了解 Kubernetes 的運作機制及 trouble shooting，較能夠滿足學習需求。
 
 * 更細緻的成本控制
-在 GCE 上部署 Kubernetes，使用者可以更靈活地控制成本。相對於 GKE 的管理型服務，GCE 提供了更多關於資源使用和優化的控制，允許使用者根據需求調整。
+在 GCE 上部署 Kubernetes，更能滿足我們的客家精神，相對於 GKE 的託管服務，GCE 提供了更多關於資源使用和優化的控制，可以根據需求調整。
 
 * 更容易獲得維運經驗
 使用 GCE 手動部署因為需要自行維護 Kubernetes 因此可以獲得其他維運經驗。較容易培養出移轉到其他雲平台或地端環境的能力。
@@ -111,21 +111,21 @@ Google Cloud Platform 服務使用包括：VPC、Subnet，以及三台虛擬機�
 #### 4. 使用 Cloud Shell 部署 Kubernetes 叢集
 ##### Step 01：開啟 Cloud Shell
 * 登入 [GCP console](https://console.cloud.google.com/)。
-* 在右上角工具列找到 Cloud Shell 的 icon ![image](https://github.com/Jaspercyt/Kubernetes-1.29.0/assets/88648972/39d3447e-a2d1-468d-8abf-77557d550682)，點擊後會在底部開啟一個新的 Cloud Shell session。
-* 在底部 Cloud Shell session 點擊 ![image](https://github.com/Jaspercyt/Kubernetes-1.29.0/assets/88648972/fccf6836-2e3a-4a70-a4a9-746b1c0255bb) 可以以新分頁的方式打開 Cloud Shell。
+* 在右上角工具列找到 Cloud Shell 的 icon ![image](https://github.com/Jaspercyt/Kubernetes-1.29.0/assets/88648972/39d3447e-a2d1-468d-8abf-77557d550682)，點擊後會在底部開啟 Cloud Shell session。
+* 在底部 Cloud Shell session 的工具列點擊 ![image](https://github.com/Jaspercyt/Kubernetes-1.29.0/assets/88648972/fccf6836-2e3a-4a70-a4a9-746b1c0255bb) 可以用新分頁的方式打開 Cloud Shell。
 
 ![image](https://github.com/Jaspercyt/Kubernetes-1.29.0/assets/88648972/708cfaa2-e07c-4e5f-8cd7-f8d104b0a4ff)
 
 
 ##### Step 02：下載並執行部署腳本
-在 Cloud Shell 中，執行以下指令
+在 Cloud Shell 中執行以下指令
 ```bash
 wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/GCP-env/GCE-Kubernetes.sh && bash GCE-Kubernetes.sh
 ```
 ![image](https://github.com/Jaspercyt/Kubernetes-1.29.0/assets/88648972/82b88a87-7387-45db-b60f-ef55ed033ddc)
 
 ##### Step 03：驗證是否成功建置 Kubernetes Cluster
-在 Cloud Shell 中，執行以下指令
+在 Cloud Shell 中執行以下指令
 * 透過 gcloud compute ssh 請求 master 執行 `kubectl get nodes -o wide` 指令，以檢視 Kubernetes 叢集各節點的狀態。
   ```bash
   gcloud compute ssh master --zone=us-west4-a --command="kubectl get nodes -o wide"
@@ -146,21 +146,21 @@ wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/GCP-env/
   ```
 
 ##### Step 04：停止 VM Instance
-在 Cloud Shell 中，執行以下指令
+在 Cloud Shell 中執行以下指令
 ```bash
 gcloud compute instances stop master worker01 worker02 --zone=us-west4-a
 ```
 ![image](https://github.com/Jaspercyt/Kubernetes-1.29.0/assets/88648972/e2ea55b0-2493-4250-929d-1a8f88753747)
 
 ##### Step 05：重啟 VM Instance
-在 Cloud Shell 中，執行以下指令
+在 Cloud Shell 中執行以下指令
 ```bash
 gcloud compute instances start master worker01 worker02 --zone=us-west4-a
 ```
 ![image](https://github.com/Jaspercyt/Kubernetes-1.29.0/assets/88648972/1a3f8cb1-adc5-4ff6-8791-d659c319409d)
 
 ##### Step 06：清理環境，刪除 GCP 資源
-在 Cloud Shell 中，執行以下指令
+在 Cloud Shell 中執行以下指令
 ```bash
 wget https://raw.githubusercontent.com/Jaspercyt/Kubernetes-1.29.0/main/GCP-env/delete-k8s-gcp-resources.sh && bash delete-k8s-gcp-resources.sh
 ```
