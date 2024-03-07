@@ -26,11 +26,11 @@ Kubernetes 測試環境安裝
 
 
 ## Kubernetes cluster 架構
-| 項次 |     名稱      |     角色      |                                     說明                                      | 內部 IP |
-|:----:|:-------------:|:-------------:|:-----------------------------------------------------------------------------:|:-------------------:|
-|  1   |  Master  | Control Plane |        叢集的控制平面，負責管理、調度和控制 Kubernetes cluster。         |    192.168.56.10    |
-|  2   | Worker01 | Compute Node  | 工作節點，執行由 Master 分配的容器和應用，增強集群的處理能力和高可用性。 |    192.168.56.11    |
-|  3   | Worker02 | Compute Node  | 工作節點，執行由 Master 分配的容器和應用，增強集群的處理能力和高可用性。 |    192.168.56.12    |
+| 項次 |   名稱   |     角色      |                                說明                                 | 內部 IP       |
+| :--: | :------: | :-----------: | :-----------------------------------------------------------------: | :------------ |
+|  1   |  Master  | Control Plane | 叢集的控制平面，負責管理、調度和控制 Kubernetes 叢集。           | 192.168.56.10 |
+|  2   | Worker01 | Compute Node  | 工作節點，執行由 Master 分配的容器和應用，增強叢集的處理能力和高可用性。 | 192.168.56.11 |
+|  3   | Worker02 | Compute Node  | 工作節點，執行由 Master 分配的容器和應用，增強叢集的處理能力和高可用性。 | 192.168.56.12 |
 
 ## Kubernetes 建置環境
 ### 環境-1：Google Cloud
@@ -40,7 +40,7 @@ Kubernetes 測試環境安裝
   > 如果是正式環境還是比較建議直接使用 Google Kubernetes Engine。
 
 * 更容易深入學習 Kubernetes
-透過手動在 Google Compute Engine 上部署 Kubernetes，可以深入了解 Kubernetes 的運作機制及 trouble shooting，較能夠滿足學習需求。
+透過手動在 GCE 上部署 Kubernetes，可以深入了解 Kubernetes 的運作機制及 trouble shooting，較能夠滿足學習需求。
 
 * 更細緻的成本控制
 在 GCE 上部署 Kubernetes，更能滿足我們的客家精神，相對於 GKE 的託管服務，GCE 提供了更多關於資源使用和優化的控制，可以根據需求調整。
@@ -59,7 +59,6 @@ Kubernetes 測試環境安裝
 |  5   |  1-setup-node  | 安裝必要的 Kubernetes 元件及 Container Runtimes，為加入叢集的前置作業 |
 |  6   | 2-master-node  | 在主節點上進行 Kubernetes 的特定配置，包括 Network plugin 及 Cluster level 相關配置       |
 |  7   | delete-k8s-gcp-resources | 清理環境，刪除 GCP 資源 |
-
 
 ```CSS =
 GCE-Kubernetes.sh
