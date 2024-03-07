@@ -26,7 +26,7 @@ Kubernetes 測試環境安裝
 
 
 ## Kubernetes cluster 架構
-| 項次 |   名稱   |     角色      |                                說明                                 | 內部 IP       |
+| 項次 |   名稱   |     角色      | 說明                                 | 內部 IP       |
 | :--: | :------: | :-----------: | :-----------------------------------------------------------------: | :------------ |
 |  1   |  Master  | Control Plane | The control plane manages the worker nodes and the Pods in the cluster.           | 192.168.56.10 |
 |  2   | Worker01 | Compute Node  | The worker node(s) host the Pods that are the components of the application workload. | 192.168.56.11 |
