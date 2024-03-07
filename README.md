@@ -28,9 +28,9 @@ Kubernetes 測試環境安裝
 ## Kubernetes cluster 架構
 | 項次 |   名稱   |     角色      |                                說明                                 | 內部 IP       |
 | :--: | :------: | :-----------: | :-----------------------------------------------------------------: | :------------ |
-|  1   |  Master  | Control Plane | 叢集的控制平面，負責管理、調度和控制 Kubernetes 叢集。           | 192.168.56.10 |
-|  2   | Worker01 | Compute Node  | 工作節點，執行由 Master 分配的容器和應用，增強叢集的處理能力和高可用性。 | 192.168.56.11 |
-|  3   | Worker02 | Compute Node  | 工作節點，執行由 Master 分配的容器和應用，增強叢集的處理能力和高可用性。 | 192.168.56.12 |
+|  1   |  Master  | Control Plane | The control plane manages the worker nodes and the Pods in the cluster.           | 192.168.56.10 |
+|  2   | Worker01 | Compute Node  | The worker node(s) host the Pods that are the components of the application workload. | 192.168.56.11 |
+|  3   | Worker02 | Compute Node  | The worker node(s) host the Pods that are the components of the application workload. | 192.168.56.12 |
 
 ## Kubernetes 建置環境
 ### 環境-1：Google Cloud
